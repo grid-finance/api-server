@@ -8,5 +8,5 @@ const addToWaitlist = catchAsync(async (req, res) => {
 });
 
 module.exports = {
-  addToWaitlist
+  addToWaitlist,
 };
