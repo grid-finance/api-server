@@ -1,30 +1,4 @@
-## Quick Start
-
-To create a project, simply run:
-
-```bash
-npx create-nodejs-express-app <project-name>
-```
-
-Or
-
-```bash
-npm init nodejs-express-app <project-name>
-```
-
-## Manual Installation
-
-If you would still prefer to do the installation manually, follow these steps:
-
-Clone the repo:
-
-```bash
-git clone --depth 1 https://github.com/hagopj13/node-express-boilerplate.git
-cd node-express-boilerplate
-npx rimraf ./.git
-```
-
-Install the dependencies:
+## Install the dependencies:
 
 ```bash
 yarn install
@@ -45,7 +19,6 @@ cp .env.example .env
 - [Environment Variables](#environment-variables)
 - [Project Structure](#project-structure)
 - [Error Handling](#error-handling)
-- [Validation](#validation)
 - [Authentication](#authentication)
 - [Authorization](#authorization)
 - [Logging](#logging)
@@ -57,7 +30,6 @@ cp .env.example .env
 
 - **NoSQL database**: [MongoDB](https://www.mongodb.com) object data modeling using [Mongoose](https://mongoosejs.com)
 - **Authentication and authorization**: using [passport](http://www.passportjs.org)
-- **Validation**: request data validation using [Joi](https://github.com/hapijs/joi)
 - **Logging**: using [winston](https://github.com/winstonjs/winston) and [morgan](https://github.com/expressjs/morgan)
 - **Testing**: unit and integration tests using [Jest](https://jestjs.io)
 - **Error handling**: centralized error handling mechanism
@@ -157,7 +129,6 @@ src\
  |--routes\         # Routes
  |--services\       # Business logic (service layer)
  |--utils\          # Utility classes and functions
- |--validations\    # Request data validation schemas
  |--app.js          # Express app
  |--index.js        # App entry point
 ```
@@ -223,23 +194,6 @@ const getUser = async (userId) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
 };
-```
-
-## Validation
-
-Request data is validated using [Joi](https://joi.dev/). Check the [documentation](https://joi.dev/api/) for more details on how to write Joi validation schemas.
-
-The validation schemas are defined in the `src/validations` directory and are used in the routes by providing them as parameters to the `validate` middleware.
-
-```javascript
-const express = require('express');
-const validate = require('../../middlewares/validate');
-const userValidation = require('../../validations/user.validation');
-const userController = require('../../controllers/user.controller');
-
-const router = express.Router();
-
-router.post('/users', validate(userValidation.createUser), userController.createUser);
 ```
 
 ## Authentication
