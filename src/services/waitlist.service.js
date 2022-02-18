@@ -20,6 +20,11 @@ const addToWaitlist = async (waitlistBody) => {
   }
 };
 
+const getWaitlist = async () => {
+  return Waitlist.find({});
+};
+
 module.exports = {
   addToWaitlist,
+  getWaitlist,
 };
